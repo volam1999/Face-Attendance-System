@@ -1,0 +1,130 @@
+/* width > 768px */
+
+@media screen and (max-width: 768px) {
+    .myClass {
+        display: none;
+    }
+}
+
+
+/* // width < 768px */
+
+@media screen and (min-width: 768px) {
+    .myClass {
+        display: relative;
+    }
+}
+
+.trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.trigger:hover {
+    color: #1890ff;
+}
+
+nz-header .ant-menu.ant-menu-dark .ant-menu-item-selected {
+    background-color: #001529;
+    color: #1890ff;
+}
+
+nz-header ul li:hover {
+    background-color: #001529;
+    color: #1890ff;
+}
+
+.sidebar-logo {
+    position: relative;
+    height: 64px;
+    padding-left: 24px;
+    overflow: hidden;
+    line-height: 64px;
+    background: #001529;
+    transition: all .3s;
+}
+
+.sidebar-logo img {
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    vertical-align: middle;
+}
+
+.sidebar-logo h1 {
+    display: inline-block;
+    margin: 0 0 0 20px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+    vertical-align: middle;
+}
+
+.menu-avatar {
+    width: 200px;
+    height: 40px;
+    color: darkred;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.menu-avatar:hover {
+    cursor: pointer;
+    color: #1890ff;
+}
+
+::ng-deep .ant-popover-arrow {
+    display: none !important;
+}
+
+nz-avatar {
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.layout {
+    min-height: 100vh;
+}
+
+.logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+}
+
+nz-header {
+    background: #fff;
+    padding: 0;
+}
+
+nz-content {
+    margin: 24px 16px 0;
+}
+
+.inner-content {
+    padding: 24px;
+    background: #fff;
+    min-height: 360px;
+}
+
+nz-footer {
+    text-align: center;
+}
+
+.trigger-right {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 0 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+    float: right;
+}
+
+.trigger-right:hover {
+    color: #1890ff;
+}

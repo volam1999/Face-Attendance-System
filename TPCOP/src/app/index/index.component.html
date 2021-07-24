@@ -1,0 +1,61 @@
+<div style="width: 100%; height: 100%;">
+    <div style="display: flex; justify-content: space-between;">
+        <nz-card style="width: 100%; height: 100%; resize: both; margin-right: 32px; border-radius: 5px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" [nzBodyStyle]='{padding: 0, display: "flex", marign: 0}'>
+            <div style="background-color: #68829a; height: 110px; width: 50%;  display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                <i nz-icon nzType="apartment" style="font-size: 400%; color: white;" nzTheme="outline"></i>
+            </div>
+            <div style="width: 80%; display: table-column; text-align: center; align-self: center;">
+                <div style="font-size: 1.6em;">{{totalDepartment}}</div>
+                <div style="font-size: 1.2em; font-weight: bold; " nz-typography nzType="secondary">Total department</div>
+            </div>
+        </nz-card>
+        <nz-card style="width: 100%; height: 100%; resize: both; margin-right: 32px;  border-radius: 5px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" [nzBodyStyle]='{padding: 0, display: "flex", marign: 0}'>
+            <div style="background-color: #ff7445; height: 110px; width: 50%;  display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                <i nz-icon nzType="dingtalk" style="font-size: 400%; color: white;" nzTheme="outline"></i>
+            </div>
+            <div style="width: 80%; display: table-column; text-align: center; align-self: center;">
+                <div style="font-size: 1.6em;">{{totalEmployee}}</div>
+                <div style="font-size: 1.2em; font-weight: bold; " nz-typography nzType="secondary">Total Employee</div>
+            </div>
+        </nz-card>
+        <nz-card style="width: 100%; resize: both;  border-radius: 5px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" [nzBodyStyle]='{padding: 0, display: "flex", marign: 0}'>
+            <div style="background-color: #52c41a; height: 110px; width: 50%;  display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                <i nz-icon nzType="deployment-unit" style="font-size: 400%; color: white;" nzTheme="outline"></i>
+            </div>
+            <div style="width: 80%; display: table-column; text-align: center; align-self: center;">
+                <div style="font-size: 1.6em;">{{totalActiveUser}}</div>
+                <div style="font-size: 1.2em; font-weight: bold; " nz-typography nzType="secondary">Employee in action</div>
+            </div>
+        </nz-card>
+    </div>
+
+    <div style="height: 200px;  width: 100%; display: flex; justify-content: center; align-items: center;">
+        <div style="width: 1000px;">
+            <nz-steps>
+                <nz-step nzTitle="Login" nzStatus="finish" nzIcon="user"></nz-step>
+                <nz-step nzTitle="Verification" nzStatus="finish" nzIcon="solution"></nz-step>
+                <nz-step nzTitle="Processing" nzStatus="process" nzIcon="loading"></nz-step>
+                <nz-step nzTitle="Done" nzStatus="wait" [nzIcon]="iconTemplate"></nz-step>
+                <ng-template #iconTemplate><i nz-icon nzType="smile"></i></ng-template>
+            </nz-steps>
+            <ng-template #checkIcon>
+                <i nz-icon nzType="check" style="font-size: 20px;"></i>
+            </ng-template>
+        </div>
+    </div>
+    <div style="margin-top: 16px; height: 500px; width: 100%; font-size: small;">
+        <nz-timeline nzMode="alternate" style="height: 200px;">
+            <nz-timeline-item>Join first Internship at FPT Software 01-03-2021</nz-timeline-item>
+            <nz-timeline-item [nzDot]="checkIcon" nzColor="green">Complete the DayOne test on 01-03-2021</nz-timeline-item>
+            <nz-timeline-item>Learn about angular frontend technology in the first week at FPT</nz-timeline-item>
+            <nz-timeline-item [nzDot]="checkIcon" nzColor="green">Complete the java basic exercise named: P2.JAVA on 08-03-2021</nz-timeline-item>
+            <nz-timeline-item [nzDot]="checkIcon" nzColor="green">Complete the java basic exercise named: P3.JAVA on 11-03-2021</nz-timeline-item>
+            <nz-timeline-item [nzDot]="checkIcon" nzColor="green">Complete the java basic exercise named: P4.JAVA on 12-03-2021</nz-timeline-item>
+            <nz-timeline-item>Learn spring boot technology in the third week start on 15-03-0-2021</nz-timeline-item>
+            <nz-timeline-item [nzDot]="checkIcon" nzColor="green">Make an API to login for my own final project on 16-03-2021</nz-timeline-item>
+            <nz-timeline-item [nzDot]="checkIcon" nzColor="green">Created API to generate dynamic excel form from JSON on the fourth week</nz-timeline-item>
+            <nz-timeline-item [nzDot]="checkIcon" nzColor="green">Add some feature on Excel Generator API at 31-03-2021 02-04-2021</nz-timeline-item>
+            <nz-timeline-item></nz-timeline-item>
+        </nz-timeline>
+    </div>
+</div>

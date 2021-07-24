@@ -1,0 +1,35 @@
+<div class="container" style="background-color: #b0bec5;">
+    <nz-card *ngIf="!isLoading;else loadingSpinStart" style="width: 30%; height: 55%; border-width: 1.8px; box-shadow:10px 10px 8px #888888; border-radius: 15px;">
+        <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+            <nz-form-item>
+                <h1>Login</h1>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your username!">
+                    <nz-input-group nzPrefixIcon="user">
+                        <input type="text" nz-input formControlName="userName" placeholder="Username" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your Password!">
+                    <nz-input-group nzPrefixIcon="lock">
+                        <input type="password" nz-input formControlName="password" placeholder="Password" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <div nz-row class="login-form-margin">
+                <div nz-col [nzSpan]="12">
+                    <label nz-checkbox formControlName="remember">
+          <span class="label">Remember me</span>
+        </label>
+                </div>
+            </div>
+            <button nz-button nzShape="round" class="login-form-button login-form-margin" [nzType]="'primary'">Login</button>
+        </form>
+    </nz-card>
+    <ng-template #loadingSpinStart>
+        <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+    </ng-template>
+
+</div>

@@ -1,0 +1,12 @@
+<div style="display: flex; justify-content: center;">
+    <form nz-form [formGroup]="formHoliday" (ngSubmit)="submitForm()">
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">UID</nz-form-label>
+            <nz-form-control nzHasFeedback nzErrorTip="This field is required">
+                <input #uid  nz-input placeholder="Type anything..." formControlName="uid" required />
+            </nz-form-control>
+            <button style=" margin-left: 5px;" nz-button nzType="primary">
+                Check</button>
+        </nz-form-item>
+    </form>
+</div>

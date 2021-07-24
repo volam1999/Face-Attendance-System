@@ -1,0 +1,22 @@
+<div style="display: flex; justify-content: center;">
+    <form nz-form [formGroup]="formHoliday" (ngSubmit)="submitForm()">
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">UID</nz-form-label>
+            <nz-form-control nzHasFeedback [nzSpan]="20" nzErrorTip="This field is required">
+                <input #uid nz-input formControlName="uid" required />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">Duration</nz-form-label>
+            <nz-form-control nzHasFeedback [nzSpan]="20" nzErrorTip="Input is required">
+                <nz-range-picker [(ngModel)]="date" [ngModelOptions]="{standalone: true}"></nz-range-picker>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control>
+                <button style=" float: right;" nz-button nzType="primary">
+                    Register</button>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</div>

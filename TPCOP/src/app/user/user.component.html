@@ -1,0 +1,111 @@
+<div style="text-align: left;">
+    <a style="margin-bottom: 5px; float: right;" nz-button nzType="dashed" href='http://localhost:8080/utils/excel/download'>Export (.xlxs)</a>
+    <nz-table #basicTable [nzData]="dataSet" nzBordered nzTitle="ALL PERSONNEL IN THE DATABASE">
+        <thead>
+            <tr>
+                <th nzAlign="center">ID</th>
+                <th nzCustomFilter nzAlign="center">Username
+                    <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu" (mouseenter)="addClickEvent($event)" (mouseleave)="addClickEvent($event)">
+                        <i nz-icon nzType="search"></i>
+                    </nz-filter-trigger>
+                </th>
+                <th nzAlign="center" [nzSortFn]="listOfColumn[1].compare">Created Date</th>
+                <th nzAlign="center">Created By</th>
+                <th nzAlign="center" [nzSortFn]="listOfColumn[0].compare">Modified Date</th>
+                <th nzAlign="center">Modified By</th>
+                <th nzAlign="center" [nzSortFn]="listOfColumn[2].compare">Status</th>
+                <th nzAlign="center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td nzAlign="center">{{data.id}}</td>
+                <td nzAlign="center">{{data.username}}</td>
+                <td nzAlign="center">{{data.createdDate}}</td>
+                <td nzAlign="center">{{data.createdBy}}</td>
+                <td nzAlign="center">{{data.modifiedDate}}</td>
+                <td nzAlign="center">{{data.modifiedBy}}</td>
+                <td nzAlign="center" *ngIf="data.status == 1"><i nz-tooltip nzTooltipTitle="Active" nzTooltipPlacement="top" nz-icon nzType="check-circle" style="color: green; font-size: 16px;" nzTheme="outline"></i></td>
+                <td nzAlign="center" *ngIf="data.status != 1"><i nz-tooltip nzTooltipTitle="Deactive" nzTooltipPlacement="top" nz-icon nzType="stop" style="color: red; font-size: 16px;" nzTheme="outline"></i></td>
+                <td nzAlign="center">
+                    <a nz-tooltip nzTooltipTitle="Delete" nzTooltipPlacement="top"><i nz-icon nzType="delete" (click)="showDeleteConfirm(data.id)" nzTheme="outline"></i></a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a nz-tooltip nzTooltipTitle="View Profile" nzTooltipPlacement="top"><i  nz-icon nzType="search" (click)="showUserInfo(data.username)" nzTheme="outline"></i></a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a *ngIf="data.status == 1;else othericon" nz-tooltip nzTooltipTitle="Deactive" (click)="activeOrDeactiveAccount(data.id)" nzTooltipPlacement="top">
+                        <i nz-icon nzType="eye-invisible" nzTheme="outline"></i>
+                    </a>
+                    <ng-template #othericon>
+                        <a nz-tooltip nzTooltipTitle="Active" (click)="activeOrDeactiveAccount(data.id)" nzTooltipPlacement="top">
+                            <i nz-icon nzType="eye" nzTheme="outline"></i>
+                        </a>
+                    </ng-template>
+                </td>
+            </tr>
+            <nz-modal [(nzVisible)]="isVisible" nzTitle="Pofile: {{currentUserName}}" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()" nzCancelDisabled="true">
+                <ng-container *nzModalContent>
+                    <app-profile [USERNAME]="currentUserName"></app-profile>
+                </ng-container>
+            </nz-modal>
+        </tbody>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+            <div class="ant-table-filter-dropdown">
+                <div class="search-box">
+                    <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+                    <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+              Search
+            </button>
+                    <button nz-button nzSize="small" (click)="reset()">Reset</button>
+                </div>
+            </div>
+        </nz-dropdown-menu>
+        <nz-drawer *ngIf="profile" [nzVisible]="isDrawerVisible" [nzWidth]="640" [nzClosable]="false" (nzOnClose)="close()">
+            <ng-container *nzDrawerContent>
+                <p class="title" style=" margin-bottom: 24px;">Profile: {{profile.id}}</p>
+                <input #id type="hidden" value="{{profile.id}}" />
+                <form nz-form [formGroup]="updateUserInfoForm" (ngSubmit)="updateUserInfo(id.value)">
+                    <nz-descriptions [nzColumn]="2" nzTitle="Personal">
+                        <nz-descriptions-item nzTitle="Full Name" [nzSpan]="1"><input formControlName="fullname" tabindex="-1" nz-input style="padding: 0;" nzBorderless placeholder="{{profile.firstname}}" (change)="enableUpdate()" /></nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Account" [nzSpan]="1"><input formControlName="username" tabindex="-1" nz-input style="padding: 0;" nzBorderless placeholder="{{profile.username}}" (change)="enableUpdate()" /></nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="City" [nzSpan]="1">Quy Nhơn</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Country" [nzSpan]="1"><input formControlName="local" tabindex="-1" nz-input style="padding: 0;" nzBorderless placeholder="{{profile.local}}" (change)="enableUpdate()" /></nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Sex" [nzSpan]="1"><input formControlName="sex" tabindex="-1" nz-input style="padding: 0;" nzBorderless placeholder="{{profile.sex}}" (change)="enableUpdate()" /></nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Birthday" [nzSpan]="1"><input formControlName="birthDay" tabindex="-1" nz-input style="padding: 0;" nzBorderless placeholder="{{profile.birthDay}}" (change)="enableUpdate()" /></nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Message" [nzSpan]="2">Make things as simple as possible but no simpler.</nz-descriptions-item>
+                    </nz-descriptions>
+                    <nz-divider></nz-divider>
+                    <nz-descriptions [nzColumn]="2" nzTitle="Company">
+                        <nz-descriptions-item nzTitle="Position" [nzSpan]="1">Programmer</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Responsibilities" [nzSpan]="1">Coding</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Department" [nzSpan]="1">PID</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Supervisor" [nzSpan]="1">PhatHuynh</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Skills" [nzSpan]="2">
+                            C / C + +, data structures, software engineering, operating systems, computer networks, databases, compiler theory, computer architecture, Microcomputer Principle and Interface Technology, Computer English, Java, ASP, etc.
+                        </nz-descriptions-item>
+                    </nz-descriptions>
+                    <nz-divider></nz-divider>
+                    <nz-descriptions [nzColumn]="2" nzTitle="Contacts">
+                        <nz-descriptions-item nzTitle="Email" [nzSpan]="1"><input formControlName="email" tabindex="-1" nz-input nzBorderless style="padding: 0;" placeholder="{{profile.email}}" (change)="enableUpdate()" type="email" /></nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Phone Number" [nzSpan]="1"><input formControlName="phone" maxlength="10" tabindex="-1" nz-input nzBorderless style="padding: 0;" placeholder="{{profile.phoneNumber}}" (change)="enableUpdate()" /></nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Github" [nzSpan]="2">
+                            <a href="https://github.com/volam1999" target="_blank">github.com/volam1999</a>
+                        </nz-descriptions-item>
+                    </nz-descriptions>
+                    <nz-divider></nz-divider>
+                    <nz-descriptions nzColon="false" [nzColumn]="2">
+                        <nz-descriptions-item [nzSpan]="1"> <button nz-button nzType="primary" [disabled]="isDisableUpdateButton" style="border-radius: 30px;"><i nz-icon nzType="cloud"></i>Update</button></nz-descriptions-item>
+                    </nz-descriptions>
+                </form>
+            </ng-container>
+        </nz-drawer>
+    </nz-table>
+    <ng-template #tempplateNotification let-profile="data" nzDuration="0" }>
+        <div><b style="font-size: larger;">Notification</b></div>
+        <nz-divider style="padding: 0; margin: 0;"></nz-divider>
+        <div style="margin-top: 5px;">
+            Account
+            <span nz-typography><mark style="font-weight: bold;">{{profile.username}}</mark></span>has been
+            <nz-tag [nzColor]="profile.color" style="font-weight: bold;">{{profile.status}} !</nz-tag>
+        </div>
+    </ng-template>
+</div>

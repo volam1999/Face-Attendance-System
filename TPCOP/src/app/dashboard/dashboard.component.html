@@ -1,0 +1,157 @@
+<!-- <nz-layout *ngIf="SESSION" class="layout">
+    <nz-sider nzCollapsible nzBreakpoint="md" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+        <div class="sidebar-logo">
+            <a href="/TPCOP/index">
+                <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+                <h1>TPCOP</h1>
+            </a>
+        </div>
+        <ul nz-menu nzTheme="dark" nzMode="inline" nzCollapsed="true">
+            <li nz-submenu [nzOpen]="true" nzTitle="Dashboard" nzIcon="dashboard">
+                <ul>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/TPCOP/index" (click)="updateBreadcum()">Home</a>
+                    </li>
+                </ul>
+            </li>
+            <li nz-submenu nzTitle="Manager System" nzIcon="setting">
+                <ul>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/TPCOP/users" (click)="updateBreadcum()">Users</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/TPCOP/att" (click)="updateBreadcum()">Logs</a>
+                    </li>
+                </ul>
+            </li>
+            <li nz-menu-item (click)="logout()"><i nz-icon nzType="logout"></i> Logout</li>
+        </ul>
+    </nz-sider>
+    <nz-layout class="right-layout">
+        <nz-header>
+            <ul nz-menu nzTheme="dark" nzMode="horizontal">
+                <li nz-menu-item nzDanger style="float: right; padding-left: 0; margin-right: 25px;" nz-popover [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottomLeft">
+                    <nz-avatar nzText="A" style="color:#fde3cf; background-color:#f56a00;"></nz-avatar>
+                    <label nz-typography style="margin-left: 5px; font-size:  1.2em; color: #f56a00;">{{SESSION}}</label>
+                </li>
+                <li nz-menu-item nzDanger style="float: right; padding-left: 0;"><i class="trigger" nz-icon nzType="setting"></i></li>
+                <li nz-menu-item nzDanger style="float: right; padding-left: 0;"><i class="trigger" nz-icon nzType="bell"></i></li>
+            </ul>
+            <ng-template #contentTemplate>
+                <div class="menu-avatar trigger" style="height: 40px; align-items: center; display: flex;">
+                    <i nz-icon style="font-size: 16px" nzType="user">
+                    </i>
+                    <label style="margin-left: 10px; font-weight: lighter; font-size: 15px; cursor: pointer;">Account Setting</label>
+                </div>
+                <div style="height: 1px; background-color: rgba(40,40,40, .2);"></div>
+                <div class="menu-avatar trigger" style="height: 40px; align-items: center; display: flex;">
+                    <i nz-icon style="font-size: 16px" nzType="logout">
+                    </i>
+                    <label style="margin-left: 10px; font-weight: lighter; font-size: 15px; cursor: pointer;" (click)="logout()">Logout</label>
+                </div>
+            </ng-template>
+        </nz-header>
+        <nz-content>
+            <nz-breadcrumb style="font-weight: bold; margin-bottom: 10px;">
+                <nz-breadcrumb-item *ngFor="let link of links">
+                    <a *ngIf="link == 'TPCOP'" style="font-size: 16px; text-transform: capitalize;" routerLink="../TPCOP/index" (click)="updateBreadcum()">{{link}}</a>
+                    <a *ngIf="link != 'TPCOP'" style="font-size: 16px; text-transform: capitalize;" routerLink="{{link}}" (click)="updateBreadcum()">{{link}}</a>
+                </nz-breadcrumb-item>
+            </nz-breadcrumb>
+            <div class="inner-content">
+                <router-outlet></router-outlet>
+            </div>
+        </nz-content>
+        <nz-footer> Powered By @PhatHuynh</nz-footer>
+    </nz-layout>
+</nz-layout>
+<div *ngIf="!SESSION" style="display: flex; height: 100%; width: 100%; justify-content: center;">
+    <nz-result nzStatus="403" nzTitle="403" nzSubTitle="Sorry, you are not authorized to access this page.">
+        <div nz-result-extra>
+            <button nz-button nzType="primary" onClick="history.back()">Back Home</button>
+        </div>
+    </nz-result>
+</div> -->
+
+<nz-layout *ngIf="SESSION" class="layout">
+    <nz-sider nzCollapsible nzBreakpoint="lg" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+        <div class="sidebar-logo">
+            <a href="/TPCOP/index">
+                <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+                <h1>TPCOP</h1>
+            </a>
+        </div>
+        <ul nz-menu nzTheme="dark" nzMode="inline" nzCollapsed="true">
+            <li nz-submenu [nzOpen]="true" nzTitle="Dashboard" nzIcon="dashboard">
+                <ul>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/TPCOP/index" (click)="updateBreadcum()">Home</a>
+                    </li>
+                </ul>
+            </li>
+            <li nz-submenu nzTitle="Manager System" nzIcon="setting">
+                <ul>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/TPCOP/users" (click)="updateBreadcum()">All Users</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/TPCOP/att" (click)="updateBreadcum()">Logging System </a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/TPCOP/holiday" (click)="updateBreadcum()">Register Holiday</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/TPCOP/manual-check" (click)="updateBreadcum()">Manual Check</a>
+                    </li>
+                </ul>
+            </li>
+            <li nz-menu-item (click)="logout()">
+                <i nz-icon nzType="logout"></i>
+                <span>Logout</span>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <nz-header>
+            <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>
+            <span class="trigger-right" style="margin-right: 25px;" nz-popover [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottomLeft">
+                <nz-avatar nzSrc="./assets/avatar.jpg"></nz-avatar>
+                <label nz-typography style="margin-left: 8px;">{{SESSION}}</label>
+            </span>
+            <i class="trigger-right" nz-icon nzType="setting"></i>
+            <i class="trigger-right" nz-icon nzType="bell"></i>
+        </nz-header>
+        <ng-template #contentTemplate>
+            <div class="menu-avatar">
+                <i nz-icon style="font-size: 16px" nzType="user">
+                </i>
+                <label style="margin-left: 10px; font-weight: lighter; font-size: 15px; cursor: pointer;">Account Setting</label>
+            </div>
+            <div style="height: 1px; background-color: rgba(40,40,40, .2);"></div>
+            <div class="menu-avatar">
+                <i nz-icon style="font-size: 16px" nzType="logout">
+                </i>
+                <label style="margin-left: 10px; font-weight: lighter; font-size: 15px; cursor: pointer;" (click)="logout()">Logout</label>
+            </div>
+        </ng-template>
+        <nz-content>
+            <nz-breadcrumb style="font-weight: bold; margin-bottom: 10px;">
+                <nz-breadcrumb-item *ngFor="let link of links">
+                    <a *ngIf="link == 'TPCOP'" style="font-size: 16px; text-transform: capitalize;" routerLink="../TPCOP/index" (click)="updateBreadcum()">{{link}}</a>
+                    <a *ngIf="link != 'TPCOP'" style="font-size: 16px; text-transform: capitalize;" routerLink="{{link}}" (click)="updateBreadcum()">{{link}}</a>
+                </nz-breadcrumb-item>
+            </nz-breadcrumb>
+            <div class="inner-content">
+                <router-outlet></router-outlet>
+            </div>
+        </nz-content>
+        <nz-footer> Powered By @PhatHuynh</nz-footer>
+    </nz-layout>
+</nz-layout>
+<div *ngIf="!SESSION" style="display: flex; height: 100%; width: 100%; justify-content: center;">
+    <nz-result nzStatus="403" nzTitle="403" nzSubTitle="Sorry, you are not authorized to access this page.">
+        <div nz-result-extra>
+            <button nz-button nzType="primary" onClick="history.back()">Back Home</button>
+        </div>
+    </nz-result>
+</div> -->

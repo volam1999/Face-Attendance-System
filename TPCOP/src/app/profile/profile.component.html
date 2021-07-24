@@ -1,0 +1,34 @@
+<div style="display: flex; justify-content: center; text-align: center;">
+    <nz-card *ngIf="data;else noData" style="width: 440px; height: 440px; border: none; background-color: #fff;">
+        <nz-avatar [nzSize]="140" nzIcon="user"></nz-avatar>
+        <div nz-typography nzType="warning" style="font-size: xx-large; font-weight: bold; margin-bottom: 0;">{{data.firstname}} {{data.lastname}}</div>
+        <div nz-typography nzType="success" style="font-size: medium;">{{data.email}}</div>
+        <nz-tag nzColor="magenta">Developer</nz-tag>
+        <nz-tag nzColor="orange">Leader</nz-tag>
+        <nz-tag nzColor="gold">Mangaer</nz-tag>
+        <div style="display: inline-block; font-size: larger; margin-top: 10px;">
+            <span *ngIf="data.sex == 'male'" style="margin-right: 30px;">
+                Sex: <i nz-icon style="color: rgb(255, 0, 64); font-size: 16px;" nzType="man" nzTheme="outline"></i>
+            </span>
+            <span *ngIf="data.sex != 'male'" style="margin-right: 30px;">
+                Sex: <i nz-icon style="color: rgb(255, 0, 170); font-size: 16px;" nzType="man" nzTheme="outline"></i>
+            </span>
+            <span>
+                BirthDay: <label  nz-typography nzType="danger" style="font-weight: bold; margin: 0;" >{{data.birthDay}}</label>
+            </span>
+        </div>
+        <div style="display: inline-block; font-size: larger; margin-top: 10px;">
+            <span style="margin-right: 30px;">
+                Loc: <label  nz-typography nzType="danger" style="font-weight: bold; margin: 0;">{{data.local}}</label>
+            </span>
+            <span>
+                Phone: <label  nz-typography nzType="secondary" style="font-weight: bold; margin: 0;" >{{data.phoneNumber}}</label>
+            </span>
+        </div>
+    </nz-card>
+    <ng-template #noData>
+        <nz-card style="width: 440px; height: 440px; border: none; background-color: #fff;">
+            <nz-empty></nz-empty>
+        </nz-card>
+    </ng-template>
+</div>
